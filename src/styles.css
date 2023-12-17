@@ -1,0 +1,14 @@
+.x-axis-scale {
+  max-width: 100%;
+  height: auto;
+}
+body::-webkit-scrollbar{
+  width: 12px;
+}
+body::-webkit-scrollbar-track{
+  background-color: var(--bs-white);
+}
+body::-webkit-scrollbar-thumb{
+  background-color: var(--bs-dark);
+  border-radius: 100px;
+}
