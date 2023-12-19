@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DogDatabaseAppComponent } from './dog-database-app.component';
+import { AssetManagerComponent } from './asset-manager.component';
 
-describe('DogDatabaseAppComponent', () => {
-  let component: DogDatabaseAppComponent;
-  let fixture: ComponentFixture<DogDatabaseAppComponent>;
+describe('AssetManagerComponent', () => {
+  let component: AssetManagerComponent;
+  let fixture: ComponentFixture<AssetManagerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DogDatabaseAppComponent]
+      imports: [AssetManagerComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(DogDatabaseAppComponent);
+    fixture = TestBed.createComponent(AssetManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
