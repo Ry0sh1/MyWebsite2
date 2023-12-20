@@ -1,0 +1,12 @@
+#options > li > a{
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+#options{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
