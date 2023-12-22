@@ -3,7 +3,10 @@ import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {HomeComponent} from "./home/home.component";
 import {AssetManagerComponent} from "./demo/asset-manager/asset-manager.component";
 import {AssetManagerHomeComponent} from "./demo/asset-manager/asset-manager-home/asset-manager-home.component";
-import {AssetManagerTestComponent} from "./demo/asset-manager/asset-manager-test/asset-manager-test.component";
+
+import {
+  AssetManagerComputerComponent
+} from "./demo/asset-manager/asset-manager-computer/asset-manager-computer.component";
 
 export const routes: Routes = [
   {
@@ -18,7 +21,7 @@ export const routes: Routes = [
       },
       {
         path:'test',
-        component: AssetManagerTestComponent,
+        component: AssetManagerComputerComponent,
       },
       {
         path: '', component:AssetManagerHomeComponent,
