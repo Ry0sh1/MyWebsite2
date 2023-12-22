@@ -3,13 +3,14 @@ import {Computer} from "../model/computer/computer";
 import {ComputerService} from "../model/computer/computer.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {NgForOf} from "@angular/common";
-import {HttpClient, HttpResponse} from "@angular/common/http";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @Component({
   selector: 'app-asset-manager-computer',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    NgxPaginationModule
   ],
   templateUrl: './asset-manager-computer.component.html',
   styleUrl: './asset-manager-computer.component.css'
@@ -34,6 +35,12 @@ export class AssetManagerComputerComponent implements OnInit{
         alert(error.message);
       }
     );
+  }
+
+  page = 1;
+
+  public handlePageChange(event:number){
+    this.page = event;
   }
 
 }

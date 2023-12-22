@@ -1,3 +1,27 @@
-<div *ngFor="let computer of computers">
-  <div>{{computer.name}}</div>
+<div id="content" class="d-flex flex-column justify-content-center align-items-center">
+  <table>
+    <thead>
+    <th>Name</th>
+    <th>Serial Number</th>
+    <th>Manufacturer</th>
+    <th>Property</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let computer of computers | paginate : {
+    itemsPerPage: 10,
+    currentPage: page,
+    totalItems: computers.length
+    };">
+      <td>{{computer.name}}</td>
+      <td>{{computer.serial_number}}</td>
+      <td>{{computer.manufacturer}}</td>
+      <td>{{computer.model}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="handlePageChange($event)">
+    previousLabel="Prev"
+    nextLabel="Next"
+    responsive="true"
+  </pagination-controls>
 </div>
