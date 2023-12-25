@@ -1,8 +1,15 @@
 <p class="text-white text-center" style="margin-top: 100px">Asset Manager!</p>
-<div class="container bg-light text-black justify-content-center position-static p-0" style="height: 800px">
+<div class="container" style="height: 800px">
   <app-asset-manager-navbar></app-asset-manager-navbar>
-  <div style="display: flex">
-    <app-asset-manager-navbar-options></app-asset-manager-navbar-options>
-    <router-outlet></router-outlet>
-  </div>
+  <mat-sidenav-container class="bg-light text-black" style="height: 800px">
+    <mat-sidenav #sidenav style="background-color:#393d4f !important;" position="start" mode="side">
+      <app-asset-manager-navbar-options></app-asset-manager-navbar-options>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+    <mat-sidenav #rightNav style="background-color:#393d4f !important;" position="end" mode="over">
+      <app-asset-manager-navbar-add></app-asset-manager-navbar-add>
+    </mat-sidenav>
+  </mat-sidenav-container>
 </div>

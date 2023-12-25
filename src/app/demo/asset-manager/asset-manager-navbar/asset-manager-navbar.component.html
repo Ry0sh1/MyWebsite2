@@ -2,7 +2,7 @@
   <nav class="position-static fixed-top navbar navbar-dark bg-dark" style="background-color:#393d4f !important;">
     <div class="container align-content-between">
       <div style="display: flex;flex-direction: row;align-items: center">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#assetNavbarOptions" aria-controls="assetNavbarOptions" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" mat-button (click)="moreOptionsClick()" type="button">
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="nav-link mx-4" style="color: orange" routerLink="home">HOME</a>
@@ -18,14 +18,14 @@
               </a>
             </div>
             <div class="col-4">
-              <a class="nav-link text-white" routerLink="test">Assets</a>
+              <a class="nav-link text-white" routerLink="assets">Assets</a>
             </div>
-            <div class="col-4">
-              <a class="nav-link text-white" href="/asset-manager">
+            <div class="col-4 text-white" >
+              <button mat-button (click)="addAssetClick()" type="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
                 </svg>
-              </a>
+              </button>
             </div>
           </div>
         </div>
