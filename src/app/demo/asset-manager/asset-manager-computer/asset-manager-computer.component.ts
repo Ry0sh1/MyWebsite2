@@ -1,12 +1,11 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Computer} from "../model/computer/computer";
 import {ComputerService} from "../model/computer/computer.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {NgForOf} from "@angular/common";
 import {NgxPaginationModule} from "ngx-pagination";
 import {MatTableDataSource, MatTableModule} from "@angular/material/table";
-import {MatPaginator, MatPaginatorModule, PageEvent} from "@angular/material/paginator";
-import {Observable} from "rxjs";
+import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-asset-manager-computer',
@@ -24,7 +23,7 @@ export class AssetManagerComputerComponent implements OnInit{
 
   public computers: Computer[];
 
-  public columnsToDisplay: string[] = ["name","serial-number","manufacturer"];
+  public columnsToDisplay: string[] = ["name","serial-number","manufacturer","status","operational-system","location","owner"];
   dataSource = new MatTableDataSource<Computer>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
