@@ -15,3 +15,7 @@ body::-webkit-scrollbar-thumb{
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.asset-manager-grey{
+  background-color: #393d4f !important;
+}
