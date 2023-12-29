@@ -10,3 +10,25 @@
   text-decoration: none;
   text-align: center;
 }
+#submit-button{
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 8px 16px;
+  width: 100px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+#submit-button:disabled{
+  opacity: 0.5;
+}
+#submit-button:disabled:hover{
+  opacity: 0.5;
+}
+#submit-button:hover{
+  opacity: 0.7;
+}
+#submit-button:active{
+  opacity: 0.5;
+}

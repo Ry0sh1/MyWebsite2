@@ -78,15 +78,20 @@ export class AssetManagerNavbarAddComponent implements OnInit{
   }
 
   public onAddComputer(addComputerForm: NgForm) {
-    addComputerForm.value.owner = this.ownerControl.value;
+    if (this.ownerControl.value !== ""){
+      addComputerForm.value.owner = this.ownerControl.value;
+    }
+    
     addComputerForm.value.status = this.statusControl.value;
     this.computerService.addComputer(addComputerForm.value).subscribe(
       (response: Computer) => {
         console.log(response)
+        const addComputerForm = <HTMLFormElement>document.getElementById('addComputerForm');
+        addComputerForm.reset();
       },
-    (error: HttpErrorResponse) => {
+      (error: HttpErrorResponse) => {
         alert(error.message)
-        }
+      }
     );
   }
 }

@@ -1,5 +1,5 @@
 <div id="options-sidebar" style="background-color:#393d4f !important;" class="bg-dark p-4">
-  <form #addComputerForm="ngForm" (ngSubmit)="onAddComputer(addComputerForm)">
+  <form id="addComputerForm" #addComputerForm="ngForm" (ngSubmit)="onAddComputer(addComputerForm)">
     <div class="row">
       <mat-form-field class="form-group col">
         <mat-label>Name</mat-label>
@@ -28,8 +28,7 @@
                matInput
                [formControl]="ownerControl"
                [matAutocomplete]="auto"
-
-               required >
+               >
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayOwner">
           @for (option of filteredOptions | async; track option) {
             <mat-option [value]="option">{{option.last_name + ", " + option.first_name}}</mat-option>
@@ -37,6 +36,6 @@
         </mat-autocomplete>
       </mat-form-field >
     </div>
-    <button [disabled]="addComputerForm.invalid" type="submit"></button>
+    <button id="submit-button" [disabled]="addComputerForm.invalid" type="submit">Add</button>
   </form>
 </div>

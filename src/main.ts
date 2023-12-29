@@ -7,6 +7,7 @@ import {importProvidersFrom} from "@angular/core";
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {NgEventBus} from "ng-event-bus";
 import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
+import {MAT_AUTOCOMPLETE_DEFAULT_OPTIONS} from "@angular/material/autocomplete";
 
 bootstrapApplication(AppComponent, {
   providers:  [
