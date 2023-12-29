@@ -29,7 +29,7 @@ export interface Computer{
   operation_system: OperationSystem;
 }
 
-enum Status{
+export enum Status{
   ACTIVE = 'ACTIVE',
   OUTGOING = 'OUTGOING',
   RETIRED = 'RETIRED',
@@ -43,7 +43,7 @@ enum Status{
   SCRAPPED = 'SCRAPPED',
   RECYCLED = 'RECYCLED'
 }
-enum Property{
+export enum Property{
   UNKNOWN = 'UNKNOWN',
   DEDICATED_TO_COMPANY = 'DEDICATED_TO_COMPANY',
   COMPANY_USED = 'COMPANY_USED',

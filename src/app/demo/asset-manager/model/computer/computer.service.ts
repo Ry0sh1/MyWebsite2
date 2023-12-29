@@ -1,8 +1,7 @@
-import {Component, Injectable} from '@angular/core';
-import {HttpClient, HttpResponse} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Computer} from "./computer";
-import {NgForOf} from "@angular/common";
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +24,7 @@ export class ComputerService {
     return this.http.put<Computer>(`${this.apiServerUrl}/computer/update`,computer);
   }
 
-  public delete(computer: Computer):Observable<any>{
+  public deleteComputer(computer: Computer):Observable<any>{
     return this.http.delete(`${this.apiServerUrl}/computer/delete`);
   }
 

@@ -13,11 +13,28 @@
     <div class="row">
       <mat-form-field class="form-group col">
         <mat-label>Status</mat-label>
-        <input name="status" ngModel matInput placeholder="(Computer-Status)" required  >
+        <mat-select [formControl]="statusControl" required>
+          <mat-option *ngFor="let status of statusOptions" [value]="status">
+            {{ status }}
+          </mat-option>
+        </mat-select>
       </mat-form-field >
       <mat-form-field class="form-group col">
         <mat-label>Owner</mat-label>
-        <input name="owner_id" ngModel matInput placeholder="(Owner-ID)" required  >
+        <input name="owner"
+               type="text"
+               placeholder="(Owner)"
+               aria-label="Owner"
+               matInput
+               [formControl]="ownerControl"
+               [matAutocomplete]="auto"
+
+               required >
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayOwner">
+          @for (option of filteredOptions | async; track option) {
+            <mat-option [value]="option">{{option.last_name + ", " + option.first_name}}</mat-option>
+          }
+        </mat-autocomplete>
       </mat-form-field >
     </div>
     <button [disabled]="addComputerForm.invalid" type="submit"></button>
