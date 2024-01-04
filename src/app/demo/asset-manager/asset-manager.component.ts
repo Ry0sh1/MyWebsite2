@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, ViewChild} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {NgComponentOutlet} from "@angular/common";
-import {AssetManagerHomeComponent} from "./home/home.component";
+import {AssetManagerHomeComponent} from "./content/home/home.component";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {OptionsComponent} from "./navbar/options/options.component";
 import {MatSidenav, MatSidenavModule} from "@angular/material/sidenav";

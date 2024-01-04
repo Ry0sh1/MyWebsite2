@@ -1,25 +1,27 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Computer} from "../model/computer/computer";
-import {ComputerService} from "../model/computer/computer.service";
+import {Computer} from "../../model/computer/computer";
+import {ComputerService} from "../../model/computer/computer.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {NgForOf} from "@angular/common";
 import {NgxPaginationModule} from "ngx-pagination";
 import {MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
+import {RouterLink} from "@angular/router";
 
 @Component({
-  selector: 'app-asset-manager-computer',
+  selector: 'app-asset-manager-assets',
   standalone: true,
   imports: [
     NgForOf,
     NgxPaginationModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    RouterLink
   ],
-  templateUrl: './computer.component.html',
-  styleUrl: './computer.component.css'
+  templateUrl: './assets.component.html',
+  styleUrl: './assets.component.css'
 })
-export class ComputerComponent implements OnInit{
+export class AssetsComponent implements OnInit{
 
   public computers: Computer[];
 

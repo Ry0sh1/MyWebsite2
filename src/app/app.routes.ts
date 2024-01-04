@@ -2,11 +2,12 @@ import { Routes } from '@angular/router';
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {HomeComponent} from "./home/home.component";
 import {AssetManagerComponent} from "./demo/asset-manager/asset-manager.component";
-import {AssetManagerHomeComponent} from "./demo/asset-manager/home/home.component";
+import {AssetManagerHomeComponent} from "./demo/asset-manager/content/home/home.component";
 
 import {
-  ComputerComponent
-} from "./demo/asset-manager/computer/computer.component";
+  AssetsComponent
+} from "./demo/asset-manager/content/assets/assets.component";
+import {ComputerComponent} from "./demo/asset-manager/content/computer/computer.component";
 
 export const routes: Routes = [
   {
@@ -21,6 +22,10 @@ export const routes: Routes = [
       },
       {
         path:'assets',
+        component: AssetsComponent,
+      },
+      {
+        path: 'computer/:id',
         component: ComputerComponent,
       },
       {
