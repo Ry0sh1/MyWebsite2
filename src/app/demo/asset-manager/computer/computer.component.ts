@@ -16,10 +16,10 @@ import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
     MatTableModule,
     MatPaginatorModule
   ],
-  templateUrl: './asset-manager-computer.component.html',
-  styleUrl: './asset-manager-computer.component.css'
+  templateUrl: './computer.component.html',
+  styleUrl: './computer.component.css'
 })
-export class AssetManagerComputerComponent implements OnInit{
+export class ComputerComponent implements OnInit{
 
   public computers: Computer[];
 

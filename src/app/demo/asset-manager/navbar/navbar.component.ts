@@ -10,10 +10,10 @@ import {NgEventBus} from "ng-event-bus";
     RouterLink,
     MatButtonModule
   ],
-  templateUrl: './asset-manager-navbar.component.html',
-  styleUrl: './asset-manager-navbar.component.css'
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.css'
 })
-export class AssetManagerNavbarComponent {
+export class NavbarComponent {
   constructor(private eventBus: NgEventBus) {}
 
   moreOptionsClick() {

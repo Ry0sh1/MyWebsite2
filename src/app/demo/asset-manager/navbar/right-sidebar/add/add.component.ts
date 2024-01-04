@@ -1,16 +1,16 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from '@angular/material/input';
 import {MatGridListModule} from "@angular/material/grid-list";
-import {ComputerService} from "../../model/computer/computer.service";
-import {Computer, Status} from "../../model/computer/computer";
+import {ComputerService} from "../../../model/computer/computer.service";
+import {Computer, Status} from "../../../model/computer/computer";
 import {HttpErrorResponse} from "@angular/common/http";
-import {OwnerService} from "../../model/owner/owner.service";
+import {OwnerService} from "../../../model/owner/owner.service";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {map, Observable, startWith} from "rxjs";
 import {AsyncPipe, NgForOf} from "@angular/common";
-import {Owner} from "../../model/owner/owner";
+import {Owner} from "../../../model/owner/owner";
 import {MatSelectModule} from "@angular/material/select";
 
 @Component({
@@ -27,11 +27,11 @@ import {MatSelectModule} from "@angular/material/select";
     MatSelectModule,
     NgForOf
   ],
-  templateUrl: './asset-manager-navbar-add.component.html',
-  styleUrl: './asset-manager-navbar-add.component.css'
+  templateUrl: './add.component.html',
+  styleUrl: './add.component.css'
 })
 
-export class AssetManagerNavbarAddComponent implements OnInit{
+export class AddComponent implements OnInit{
   public owners: Owner[];
   public ownerControl = new FormControl<string | Owner>('');
   public filteredOptions!: Observable<Owner[]>;
@@ -81,7 +81,7 @@ export class AssetManagerNavbarAddComponent implements OnInit{
     if (this.ownerControl.value !== ""){
       addComputerForm.value.owner = this.ownerControl.value;
     }
-    
+
     addComputerForm.value.status = this.statusControl.value;
     this.computerService.addComputer(addComputerForm.value).subscribe(
       (response: Computer) => {

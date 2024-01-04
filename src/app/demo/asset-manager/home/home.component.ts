@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-asset-manager-home',
   standalone: true,
   imports: [],
-  templateUrl: './asset-manager-home.component.html',
-  styleUrl: './asset-manager-home.component.css'
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
 })
 export class AssetManagerHomeComponent {
 
