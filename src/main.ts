@@ -6,16 +6,16 @@ import {routes} from "./app/app.routes";
 import {importProvidersFrom} from "@angular/core";
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {NgEventBus} from "ng-event-bus";
-import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
-import {MAT_AUTOCOMPLETE_DEFAULT_OPTIONS} from "@angular/material/autocomplete";
+import {ErrorStateMatcher, MatNativeDateModule, ShowOnDirtyErrorStateMatcher} from "@angular/material/core";
 
 bootstrapApplication(AppComponent, {
   providers:  [
     importProvidersFrom(RouterModule.forRoot(routes)),
+    importProvidersFrom(MatNativeDateModule),
     provideHttpClient(),
     provideAnimations(),
     NgEventBus,
-    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
 ]
 })
   .catch((err) => console.error(err));

@@ -7,14 +7,17 @@ export interface Computer{
   status: Status;
   operational_status: OperationalStatus;
   operational_impact: OperationImpact;
+
   organizational_unit: string;
   cost_centre: number;
   location: string;
   owner: Owner;
   property: Property;
+
   inventory_number: number;
   inventory_item: string;
   end_of_operation: Date;
+
   domain: string;
   account_status: AccountStatus;
   dns_name: string;
@@ -22,6 +25,7 @@ export interface Computer{
   standard_gateway: string;
   ip_address: string;
   ip_v6_address: string;
+
   manufacturer: string;
   model: string;
   year_of_manufacturer: Date;

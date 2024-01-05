@@ -1,44 +1,179 @@
 <form id="computerEditForm" #computerEditForm="ngForm">
-  <mat-card>
-    <mat-card-content class="bg-light d-flex justify-content-center flex-column">
-      <h3>General Information</h3>
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Unknown" value="{{computer.name}}">
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Serialnumber</mat-label>
-        <input matInput placeholder="Unknown" value="{{computer.serial_number}}">
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Status</mat-label>
-        <mat-select [(value)]="selectedStatus">
-          <mat-option *ngFor="let status of statusOptions" [value]="status">
-            {{ status }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Status</mat-label>
-        <mat-select [(value)]="selectedOperationalStatus">
-          <mat-option *ngFor="let operationalStatus of operationalStatusOptions" [value]="operationalStatus">
-            {{ operationalStatus }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Status</mat-label>
-        <mat-select [(value)]="selectedOperationalImpact">
-          <mat-option *ngFor="let operationalImpact of operationalImpactOptions" [value]="operationalImpact">
-            {{ operationalImpact }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-    </mat-card-content>
-  </mat-card>
+  <div class="d-flex flex-row">
+    <div>
+      <mat-card>
+        <mat-card-content class="bg-light d-flex justify-content-center flex-column">
+          <h3>General Information</h3>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Unknown" value="{{computer.name}}">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Serialnumber</mat-label>
+            <input matInput placeholder="Unknown" value="{{computer.serial_number}}">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select [(value)]="selectedStatus">
+              <mat-option *ngFor="let status of statusOptions" [value]="status">
+                {{ status }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select [(value)]="selectedOperationalStatus">
+              <mat-option *ngFor="let operationalStatus of operationalStatusOptions" [value]="operationalStatus">
+                {{ operationalStatus }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select [(value)]="selectedOperationalImpact">
+              <mat-option *ngFor="let operationalImpact of operationalImpactOptions" [value]="operationalImpact">
+                {{ operationalImpact }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div>
+      <mat-card>
+        <mat-card-content class="bg-light d-flex justify-content-center flex-column">
+          <h3>Proprietor</h3>
+          <mat-form-field>
+            <mat-label>Organizationalunit</mat-label>
+            <input matInput placeholder="Unknown" value="{{computer.organizational_unit}}">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Costcentre</mat-label>
+            <input matInput placeholder="Unknown" value="{{computer.cost_centre}}">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>location</mat-label>
+            <input matInput placeholder="Unknown" value="{{computer.location}}">
+          </mat-form-field>
+          <mat-form-field class="form-group col">
+            <mat-label>Owner</mat-label>
+            <input name="owner"
+                   type="text"
+                   placeholder="(Owner)"
+                   aria-label="Owner"
+                   matInput
+                   [formControl]="ownerControl"
+                   [matAutocomplete]="auto"
+            >
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayOwner" id="ownerAutocomplete">
+              @for (option of filteredOptions | async; track option) {
+              <mat-option [value]="option">{{option.last_name + ", " + option.first_name}}</mat-option>
+              }
+            </mat-autocomplete>
+          </mat-form-field >
+          <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select [(value)]="selectedProperty">
+              <mat-option *ngFor="let property of propertyOptions" [value]="property">
+                {{ property }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div>
+      <mat-card>
+        <mat-card-content class="bg-light d-flex justify-content-center flex-column">
+          <h3>Inventory</h3>
+          <mat-form-field>
+            <mat-label>Inventorynumber</mat-label>
+            <input matInput placeholder="Unknown" value="{{computer.inventory_number}}">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Inventoryitem</mat-label>
+            <input matInput placeholder="Unknown" value="{{computer.inventory_item}}">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>End Of Operation</mat-label>
+            <input matInput [matDatepicker]="picker" value="{{computer.end_of_operation}}">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div>
+    <mat-card>
+      <mat-card-content class="bg-light d-flex justify-content-center flex-column">
+        <h3>Identification</h3>
+        <mat-form-field>
+          <mat-label>Domain</mat-label>
+          <input matInput placeholder="Unknown" value="{{computer.domain}}">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Account Status</mat-label>
+          <mat-select [(value)]="selectedAccountStatus">
+            <mat-option *ngFor="let accountStatus of accountStatusOptions" [value]="accountStatus">
+              {{ accountStatus }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>DNS-Name</mat-label>
+          <input matInput placeholder="Unknown" value="{{computer.dns_name}}">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>DNS-Server</mat-label>
+          <input matInput placeholder="Unknown" value="{{computer.dns_server}}">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Standard Gateway</mat-label>
+          <input matInput placeholder="Unknown" value="{{computer.standard_gateway}}">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>IP-Address</mat-label>
+          <input matInput placeholder="Unknown" value="{{computer.ip_address}}">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>IP-v6-Address</mat-label>
+          <input matInput placeholder="Unknown" value="{{computer.ip_v6_address}}">
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div>
+    <mat-card>
+      <mat-card-content class="bg-light d-flex justify-content-center flex-column">
+        <h3>Hardware</h3>
+        <mat-form-field>
+          <mat-label>Manufacturer</mat-label>
+          <input matInput placeholder="Unknown" value="{{computer.manufacturer}}">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Model</mat-label>
+          <input matInput placeholder="Unknown" value="{{computer.model}}">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Year Of Manufacturer</mat-label>
+          <input matInput [matDatepicker]="picker" value="{{computer.year_of_manufacturer}}">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Processor</mat-label>
+          <input matInput placeholder="Unknown" value="{{computer.processor}}">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Account Status</mat-label>
+          <mat-select [(value)]="selectedOperationSystem">
+            <mat-option *ngFor="let operationSystem of operationSystemOptions" [value]="operationSystem">
+              {{ operationSystem }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </form>
