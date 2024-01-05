@@ -50,7 +50,7 @@ export enum Property{
   EMPLOYEE = 'EMPLOYEE',
   EXTERNAL = 'EXTERNAL'
 }
-enum OperationSystem{
+export enum OperationSystem{
   WINDOWS11 = 'WINDOWS11',
   WINDOWS10 = 'WINDOWS10',
   WINDOWS11_PRO = 'WINDOWS_PRO',
@@ -59,18 +59,18 @@ enum OperationSystem{
   FEDORA = 'FEDORA',
   MAC_OS = 'MAC_OS'
 }
-enum OperationalStatus {
+export enum OperationalStatus {
   UNKNOWN = 'UNKNOWN',
   POWERED_ON = 'POWERED_ON',
   POWERED_OFF = 'POWERED_OFF',
   PAUSED = 'PAUSED'
 }
-enum OperationImpact{
+export enum OperationImpact{
   PERSON = 'PERSON',
   WORKING_GROUP = 'WORKING_GROUP',
   COMPANY = 'COMPANY'
 }
-enum AccountStatus{
+export enum AccountStatus{
   ACTIVE = 'ACTIVE',
   DELETED = 'DELETED',
   INACTIVE = 'INACTIVE'

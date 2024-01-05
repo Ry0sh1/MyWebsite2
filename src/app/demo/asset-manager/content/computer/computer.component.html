@@ -1,1 +1,44 @@
-<p>{{computer.name}}</p>
+<form id="computerEditForm" #computerEditForm="ngForm">
+  <mat-card>
+    <mat-card-content class="bg-light d-flex justify-content-center flex-column">
+      <h3>General Information</h3>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Unknown" value="{{computer.name}}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Serialnumber</mat-label>
+        <input matInput placeholder="Unknown" value="{{computer.serial_number}}">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select [(value)]="selectedStatus">
+          <mat-option *ngFor="let status of statusOptions" [value]="status">
+            {{ status }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select [(value)]="selectedOperationalStatus">
+          <mat-option *ngFor="let operationalStatus of operationalStatusOptions" [value]="operationalStatus">
+            {{ operationalStatus }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select [(value)]="selectedOperationalImpact">
+          <mat-option *ngFor="let operationalImpact of operationalImpactOptions" [value]="operationalImpact">
+            {{ operationalImpact }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </mat-card-content>
+  </mat-card>
+</form>
