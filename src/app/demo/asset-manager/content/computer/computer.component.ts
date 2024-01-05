@@ -60,6 +60,9 @@ export class ComputerComponent implements OnInit{
   public owners: Owner[];
   public ownerControl = new FormControl<string | Owner>("");
 
+  public yearOfManufacture: Date = new Date();
+  public endOfOperation: Date = new Date();
+
   constructor(private route: ActivatedRoute,
               private ownerService: OwnerService,
               private computerService: ComputerService) {
@@ -86,6 +89,8 @@ export class ComputerComponent implements OnInit{
           this.selectedAccountStatus = this.computer.account_status;
           this.ownerControl.setValue(this.computer.owner);
           this.selectedOperationSystem = this.computer.operation_system;
+          this.yearOfManufacture = new Date(this.computer.end_of_operation);
+          this.endOfOperation = new Date(this.computer.year_of_manufacture);
         }))
     });
   }

@@ -28,7 +28,7 @@ export interface Computer{
 
   manufacturer: string;
   model: string;
-  year_of_manufacturer: Date;
+  year_of_manufacture: Date;
   processor: string;
   operation_system: OperationSystem;
 }
