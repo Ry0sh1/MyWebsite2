@@ -12,7 +12,7 @@ import {
 import {ComputerService} from "../../model/computer/computer.service";
 import {MatCardModule} from "@angular/material/card";
 import {MatInputModule} from "@angular/material/input";
-import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {AsyncPipe, NgForOf} from "@angular/common";
@@ -21,7 +21,7 @@ import {Owner} from "../../model/owner/owner";
 import {OwnerService} from "../../model/owner/owner.service";
 import {map, Observable, startWith} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
-import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatDatepickerInputEvent, MatDatepickerModule} from "@angular/material/datepicker";
 
 @Component({
   selector: 'app-asset-manager-computer',
@@ -42,26 +42,27 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
   styleUrl: './computer.component.css'
 })
 export class ComputerComponent implements OnInit{
-  computer!: Computer;
+  public computer!: Computer;
   public statusOptions: Status[] = Object.values(Status);
   public operationalStatusOptions: OperationalStatus[] = Object.values(OperationalStatus);
   public operationalImpactOptions: OperationImpact[] = Object.values(OperationImpact);
   public propertyOptions: Property[] = Object.values(Property);
   public accountStatusOptions: AccountStatus[] = Object.values(AccountStatus);
   public operationSystemOptions: OperationSystem[] = Object.values(OperationSystem)
-  public selectedStatus: Status = Status.UNKNOWN;
-  public selectedOperationalStatus: OperationalStatus = OperationalStatus.UNKNOWN;
-  public selectedOperationalImpact: OperationImpact = OperationImpact.PERSON;
-  public selectedProperty: Property = Property.UNKNOWN;
-  public selectedAccountStatus: AccountStatus = AccountStatus.ACTIVE;
-  public selectedOperationSystem: OperationSystem = OperationSystem.WINDOWS11;
 
   public filteredOptions!: Observable<Owner[]>;
   public owners: Owner[];
   public ownerControl = new FormControl<string | Owner>("");
 
-  public yearOfManufacture: Date = new Date();
-  public endOfOperation: Date = new Date();
+  public yearOfManufacture: Date|null = new Date();
+  public endOfOperation: Date|null = new Date();
+
+  public statusControl = new FormControl<Status>(Status.UNKNOWN);
+  public operationalStatusControl = new FormControl<OperationalStatus>(OperationalStatus.UNKNOWN);
+  public operationalImpactControl = new FormControl<OperationImpact>(OperationImpact.PERSON);
+  public propertyControl = new FormControl<Property>(Property.UNKNOWN);
+  public accountStatusControl = new FormControl<AccountStatus>(AccountStatus.ACTIVE);
+  public operationSystemControl = new FormControl<OperationSystem>(OperationSystem.WINDOWS11);
 
   constructor(private route: ActivatedRoute,
               private ownerService: OwnerService,
@@ -82,17 +83,25 @@ export class ComputerComponent implements OnInit{
       this.computerService.getComputerById(+params['id']).subscribe(
         (response => {
           this.computer = response;
-          this.selectedStatus = this.computer.status;
-          this.selectedOperationalStatus = this.computer.operational_status;
-          this.selectedOperationalImpact = this.computer.operational_impact;
-          this.selectedProperty = this.computer.property;
-          this.selectedAccountStatus = this.computer.account_status;
-          this.ownerControl.setValue(this.computer.owner);
-          this.selectedOperationSystem = this.computer.operation_system;
-          this.yearOfManufacture = new Date(this.computer.end_of_operation);
-          this.endOfOperation = new Date(this.computer.year_of_manufacture);
+          this.computer.id = +params['id'];
+          this.fillTemplate();
         }))
     });
+  }
+
+  public fillTemplate(){
+    (document.getElementById('headComputerName') as HTMLHeadingElement).innerText = "Computer Name: " + this.computer.name;
+
+    this.ownerControl.setValue(this.computer.owner);
+    this.statusControl.setValue(this.computer.status);
+    this.operationalStatusControl.setValue(this.computer.operational_status);
+    this.operationalImpactControl.setValue(this.computer.operational_impact);
+    this.propertyControl.setValue(this.computer.property);
+    this.accountStatusControl.setValue(this.computer.account_status);
+    this.operationSystemControl.setValue(this.computer.operation_system);
+
+    this.yearOfManufacture = new Date(this.computer.end_of_operation);
+    this.endOfOperation = new Date(this.computer.year_of_manufacture);
   }
 
   public getOwner():void{
@@ -116,6 +125,38 @@ export class ComputerComponent implements OnInit{
       option.first_name.toLowerCase().includes(filterValue) ||
       option.last_name.toLowerCase().includes(filterValue) ||
       (option.last_name + ", " + option.first_name).toLowerCase().includes(filterValue));
+  }
+
+  public onEditComputer(form: NgForm){
+    form.value.id = this.computer.id;
+    form.value.status = this.statusControl.value;
+    form.value.operational_status = this.operationalStatusControl.value;
+    form.value.operational_impact = this.operationalImpactControl.value;
+    form.value.property = this.propertyControl.value;
+    form.value.account_status = this.accountStatusControl.value;
+    form.value.operation_system = this.operationSystemControl.value;
+    form.value.owner = this.ownerControl.value;
+
+    form.value.end_of_operation = this.endOfOperation;
+    form.value.year_of_manufacture = this.yearOfManufacture;
+
+    this.computerService.updateComputer(form.value).subscribe(
+      (response: Computer) => {
+        console.log(response);
+      },(error: HttpErrorResponse) => {
+        alert(error.message + error.name + error.statusText + error.headers);
+      })
+  }
+
+  public onEndOfOperationChange(event: MatDatepickerInputEvent<Date>): void {
+    this.endOfOperation = event.value;
+  }
+  public onYearOfManufactureChange(event: MatDatepickerInputEvent<Date>): void {
+    this.yearOfManufacture = event.value;
+  }
+
+  public goBack() {
+    window.location.replace("http://localhost:4200/asset-manager/assets");
   }
 
 }
