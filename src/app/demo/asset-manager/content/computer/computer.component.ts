@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {
   AccountStatus,
   Computer,
@@ -66,7 +66,8 @@ export class ComputerComponent implements OnInit{
 
   constructor(private route: ActivatedRoute,
               private ownerService: OwnerService,
-              private computerService: ComputerService) {
+              private computerService: ComputerService,
+              private router: Router) {
     this.owners = [];
   }
 
@@ -156,7 +157,7 @@ export class ComputerComponent implements OnInit{
   }
 
   public goBack() {
-    window.location.replace("http://localhost:4200/asset-manager/assets");
+    this.router.navigate(['asset-manager/assets'])
   }
 
 }

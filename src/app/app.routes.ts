@@ -8,6 +8,9 @@ import {
   AssetsComponent
 } from "./demo/asset-manager/content/assets/assets.component";
 import {ComputerComponent} from "./demo/asset-manager/content/computer/computer.component";
+import {OwnerComponent} from "./demo/asset-manager/content/owner/owner.component";
+import {BaseDataComponent} from "./demo/asset-manager/content/base-data/base-data.component";
+import {TutorialComponent} from "./demo/asset-manager/content/tutorial/tutorial.component";
 
 export const routes: Routes = [
   {
@@ -25,8 +28,16 @@ export const routes: Routes = [
         component: AssetsComponent,
       },
       {
+        path:'base-data',
+        component: BaseDataComponent,
+      },
+      {
         path: 'computer/:id',
         component: ComputerComponent,
+      },
+      {
+        path:'help',
+        component: TutorialComponent
       },
       {
         path: '', component:AssetManagerHomeComponent,

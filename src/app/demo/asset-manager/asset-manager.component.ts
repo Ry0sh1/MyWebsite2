@@ -7,9 +7,6 @@ import {OptionsComponent} from "./navbar/options/options.component";
 import {MatSidenav, MatSidenavModule} from "@angular/material/sidenav";
 import {NgEventBus} from "ng-event-bus";
 import {
-  ComputerInfoComponent
-} from "./navbar/right-sidebar/computer-info/computer-info.component";
-import {
   AddComponent
 } from "./navbar/right-sidebar/add/add.component";
 @Component({
@@ -25,7 +22,6 @@ import {
     OptionsComponent,
     AddComponent,
     MatSidenavModule,
-    ComputerInfoComponent,
     AddComponent,
   ],
   templateUrl: './asset-manager.component.html',
