@@ -1,1 +1,35 @@
-<p>base-data works!</p>
+<div id="content" class="d-flex flex-column justify-content-center align-items-center">
+  <table id="owner-table" mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="last_name">
+      <th mat-header-cell *matHeaderCellDef>Last Name</th>
+      <td mat-cell *matCellDef="let owner" [routerLink]="['/asset-manager/owner',owner.id]">{{owner.last_name}}</td>
+    </ng-container>
+    <ng-container matColumnDef="first_name">
+      <th mat-header-cell *matHeaderCellDef>First Name</th>
+      <td mat-cell *matCellDef="let owner" [routerLink]="['/asset-manager/owner',owner.id]">{{owner.first_name}}</td>
+    </ng-container>
+    <ng-container matColumnDef="street">
+      <th mat-header-cell *matHeaderCellDef>Street</th>
+      <td mat-cell *matCellDef="let owner" [routerLink]="['/asset-manager/owner',owner.id]">{{owner.street}}</td>
+    </ng-container>
+    <ng-container matColumnDef="home">
+      <th mat-header-cell *matHeaderCellDef>Home</th>
+      <td mat-cell *matCellDef="let owner" [routerLink]="['/asset-manager/owner',owner.id]">{{owner.home}}</td>
+    </ng-container>
+    <ng-container matColumnDef="postal_code">
+      <th mat-header-cell *matHeaderCellDef>Postal Code</th>
+      <td mat-cell *matCellDef="let owner" [routerLink]="['/asset-manager/owner',owner.id]">{{owner.postal_code}}</td>
+    </ng-container>
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef>Number</th>
+      <td mat-cell *matCellDef="let owner" [routerLink]="['/asset-manager/owner',owner.id]">{{owner.number}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+  </table>
+  <mat-paginator id="owner-table-paginator"
+                 [hidePageSize]="true"
+                 pageSize="10"
+                 showFirstLastButtons
+  ></mat-paginator>
+</div>

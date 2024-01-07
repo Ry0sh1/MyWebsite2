@@ -38,7 +38,7 @@ export class AssetsComponent implements OnInit{
     this.getComputer();
   }
 
-  public getComputer():void {
+  private getComputer():void {
     this.computerService.getComputer().subscribe( //Returns an Observable and we use subscribe so we grab the data if there appears data
       (response: Computer[]) => {
         this.computers = response;

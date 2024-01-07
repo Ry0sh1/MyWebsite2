@@ -20,8 +20,8 @@ export const routes: Routes = [
     children: [
       {
         path:'home',
-        redirectTo: '',
-        pathMatch: 'full',
+        redirectTo:'',
+        pathMatch:'full',
       },
       {
         path:'assets',
@@ -32,7 +32,11 @@ export const routes: Routes = [
         component: BaseDataComponent,
       },
       {
-        path: 'computer/:id',
+        path:'owner/:id',
+        component: OwnerComponent,
+      },
+      {
+        path:'computer/:id',
         component: ComputerComponent,
       },
       {
@@ -40,11 +44,11 @@ export const routes: Routes = [
         component: TutorialComponent
       },
       {
-        path: '', component:AssetManagerHomeComponent,
+        path:'', component:AssetManagerHomeComponent,
       },
     ],
   },
-  {path: 'home', component: HomeComponent},
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: '**', component: PageNotFoundComponent},
+  {path:'home', component: HomeComponent},
+  {path:'', redirectTo:'/home', pathMatch:'full'},
+  {path:'**', component: PageNotFoundComponent},
 ];
