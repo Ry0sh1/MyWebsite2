@@ -1,1 +1,42 @@
-<p>owner works!</p>
+<form id="ownerEditForm" #ownerEditForm="ngForm">
+  <div class="d-flex flex-row mt-5 mb-5">
+    <mat-card>
+      <mat-card-content class="bg-light d-flex justify-content-center flex-column">
+        <h3>General Information</h3>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input id="last_name" name="last_name" [(ngModel)]="owner.last_name" matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input id="first_name" name="first_name" [(ngModel)]="owner.first_name" matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>street</mat-label>
+          <input id="street" name="street" [(ngModel)]="owner.street" matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Home</mat-label>
+          <input id="home" name="home" [(ngModel)]="owner.home" matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>District</mat-label>
+          <input id="district" name="district" [(ngModel)]="owner.district" matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Postal Code</mat-label>
+          <input id="postal_code" name="postal_code" [(ngModel)]="owner.postal_code" matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Number</mat-label>
+          <input id="number" name="number" [(ngModel)]="owner.number" matInput>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="d-flex justify-content-between">
+    <button id="okay-button" type="submit" (click)="onEditOwner(ownerEditForm); goBack()">Okay</button>
+    <button id="save-button" type="button" (click)="onEditOwner(ownerEditForm)">Save</button>
+    <button id="cancel-button" (click)="goBack()">Cancel</button>
+  </div>
+</form>

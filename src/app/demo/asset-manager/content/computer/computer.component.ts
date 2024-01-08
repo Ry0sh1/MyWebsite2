@@ -145,7 +145,7 @@ export class ComputerComponent implements OnInit{
       (response: Computer) => {
         console.log(response);
       },(error: HttpErrorResponse) => {
-        alert(error.message + error.name + error.statusText + error.headers);
+        alert(error.message);
       })
   }
 
