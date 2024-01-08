@@ -101,8 +101,8 @@ export class ComputerComponent implements OnInit{
     this.accountStatusControl.setValue(this.computer.account_status);
     this.operationSystemControl.setValue(this.computer.operation_system);
 
-    this.yearOfManufacture = new Date(this.computer.end_of_operation);
-    this.endOfOperation = new Date(this.computer.year_of_manufacture);
+    this.yearOfManufacture = new Date(this.computer.year_of_manufacture);
+    this.endOfOperation = new Date(this.computer.end_of_operation);
   }
 
   public getOwner():void{

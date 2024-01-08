@@ -24,6 +24,7 @@ export class AssetManagerHomeComponent implements OnInit, OnDestroy{
   private computerServiceSubscription!: Subscription;
   public chartOS: any;
   public chartStatus: any;
+  public chartComputerStock: any;
 
   constructor(private ownerService: OwnerService, private computerService: ComputerService) {
     this.allComputer = [];
@@ -33,7 +34,9 @@ export class AssetManagerHomeComponent implements OnInit, OnDestroy{
     this.computerServiceSubscription = this.computerService.getComputer().subscribe((response) => {
       this.allComputer = response;
       let newDataOS = ["0","0","0","0","0","0","0"];
-      let newDataStatus = ["0","0","0","0","0","0","0","0","0","0","0","0"]
+      let newDataStatus = ["0","0","0","0","0","0","0","0","0","0","0","0"];
+      let dates = [2000,2010,2020,2030,2040,2050,2060,2070,2080,2090,2100];
+      let dateValue = [0,0,0,0,0,0,0,0,0,0,0];
       for (let i = 0; i < this.allComputer.length; i++){
         switch (this.allComputer[i].operation_system){
           case OperationSystem.WINDOWS11: newDataOS[0]=(parseInt(newDataOS[0])+1).toString();break;
@@ -58,9 +61,31 @@ export class AssetManagerHomeComponent implements OnInit, OnDestroy{
           case Status.SCRAPPED: newDataStatus[10] = (parseInt(newDataStatus[10]) + 1).toString();break;
           case Status.RECYCLED: newDataStatus[11] = (parseInt(newDataStatus[11]) + 1).toString();break;
         }
+        for (let j = 0; j < dates.length;j++){
+          if (new Date(this.allComputer[i].end_of_operation) > new Date(dates[j],1,1)){
+            dateValue[j]++;
+          }
+        }
       }
       this.RenderChartOS(newDataOS);
       this.RenderChartStatus(newDataStatus);
+      this.RenderChartComputerStock(dateValue)
+    });
+  }
+
+  RenderChartComputerStock(newDataComputerStock: number[]){
+    this.chartComputerStock = new Chart("ChartComputerStock", {
+      type: 'line',
+      data: {
+        labels: ["2000","2010","2020","2030","2040","2050","2060","2070","2080","2090","2100"],
+        datasets: [{
+          label: 'Computer Stock',
+          data: newDataComputerStock,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }],
+      }
     });
   }
 
