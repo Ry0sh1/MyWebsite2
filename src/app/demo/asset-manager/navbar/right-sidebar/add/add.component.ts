@@ -39,7 +39,8 @@ export class AddComponent implements OnInit{
   public statusControl = new FormControl<Status>(Status.ACTIVE);
   public statusOptions: Status[] = Object.values(Status);
 
-  constructor(private computerService: ComputerService, private ownerService: OwnerService) {
+  constructor(private computerService: ComputerService,
+              private ownerService: OwnerService) {
     this.owners = [];
   }
 
