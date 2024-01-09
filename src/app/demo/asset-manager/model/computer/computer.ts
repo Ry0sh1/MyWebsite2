@@ -57,7 +57,7 @@ export enum Property{
 export enum OperationSystem{
   WINDOWS11 = 'WINDOWS11',
   WINDOWS10 = 'WINDOWS10',
-  WINDOWS11_PRO = 'WINDOWS_PRO',
+  WINDOWS11_PRO = 'WINDOWS11_PRO',
   UBUNTU = 'UBUNTU',
   DEBIAN = 'DEBIAN',
   FEDORA = 'FEDORA',

@@ -6,6 +6,19 @@
     <canvas style="height:200px" id="ChartStatus">{{ chartStatus }}</canvas>
   </div>
 </div>
-<div class="chart-container pb-5">
+<div class="chart-container pb-5 mb-3">
   <canvas style="height:200px" id="ChartComputerStock">{{ chartComputerStock }}</canvas>
+</div>
+<div class="chart-container pb-5 d-flex justify-content-center align-items-center" style="height: 600px">
+  <canvas id="ChartCustom">{{ chartCustom }}</canvas>
+</div>
+<div class="w-50 m-auto">
+  <mat-form-field class="d-flex justify-content-center align-items-center flex-column pb-5">
+    <mat-label class="text-center">Select Data you want to see</mat-label>
+    <mat-select (valueChange)="changeOption()" [(value)]="selected">
+      @for (option of chartCustomOptions; track option) {
+      <mat-option [value]="option">{{option}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
 </div>
