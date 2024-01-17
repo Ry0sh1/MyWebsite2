@@ -13,7 +13,7 @@ import {ComputerService} from "../../model/computer/computer.service";
 import {Subscription} from "rxjs";
 import {MatButtonModule} from "@angular/material/button";
 import {NgChartsModule} from 'ng2-charts';
-import {Chart} from "chart.js";
+import {Chart, Colors} from "chart.js";
 import {MatSelectModule} from "@angular/material/select";
 
 export type CurrentLabel = {
@@ -70,6 +70,12 @@ export class AssetManagerHomeComponent implements OnInit, OnDestroy{
   public dataOperationImpact = ["0","0","0"];
   public dataAccountStatus = ["0","0","0"];
   public dataManufacturer = ["0","0","0","0"];
+
+  private labelColorPie = [
+    '#1395BA', '#117899', '#155B78', '#133C55',
+    '#C02E1D', '#D94E1F', '#F16C20', '#EF8B2C',
+    '#fdcb4b','#e6ff79','#96ff79','#79ffb8'
+  ];
 
   constructor(private ownerService: OwnerService, private computerService: ComputerService) {
     this.allComputer = [];
@@ -171,12 +177,7 @@ export class AssetManagerHomeComponent implements OnInit, OnDestroy{
     }
   }
 
-
-
   RenderChartOS(){
-    const labelColors = [
-      'red', 'blue', 'green', 'yellow', 'orange', 'purple', 'cyan'
-    ];
     this.chartOS = new Chart("ChartOS", {
       type: 'pie',
       data: {
@@ -185,7 +186,7 @@ export class AssetManagerHomeComponent implements OnInit, OnDestroy{
           {
             label: "Amount",
             data: this.dataOS,
-            backgroundColor: labelColors
+            backgroundColor: this.labelColorPie
           }
         ]
       },
@@ -204,10 +205,6 @@ export class AssetManagerHomeComponent implements OnInit, OnDestroy{
     });
   }
   RenderChartStatus(){
-    const labelColors = [
-      'red', 'blue', 'green', 'yellow', 'orange', 'purple', 'cyan',
-      'pink', 'brown', 'teal', 'lime', 'indigo', 'maroon', 'navy', 'olive', 'silver', 'aqua', 'fuchsia', 'gray'
-    ];
     this.chartStatus = new Chart("ChartStatus", {
       type: 'pie',
       data: {
@@ -216,19 +213,26 @@ export class AssetManagerHomeComponent implements OnInit, OnDestroy{
           {
             label: "Amount",
             data: this.dataStatus,
-            backgroundColor: labelColors
+            backgroundColor: this.labelColorPie
           }
         ]
       },
       options: {
-        responsive: true,
         plugins: {
           legend: {
-            position: 'top',
+            position: 'right',
           },
           title: {
+            padding:{
+              bottom:0,
+              top:0
+            },
             display: true,
-            text: 'Status of all Computers'
+            text: 'Status of all Computers',
+            align: "start",
+            font:{
+              size: 16,
+            }
           }
         }
       },
@@ -253,10 +257,6 @@ export class AssetManagerHomeComponent implements OnInit, OnDestroy{
     if (this.chartCustom) {
       this.chartCustom.destroy(); // Destroy the existing chart
     }
-    const labelColors = [
-      'red', 'blue', 'green', 'yellow', 'orange', 'purple', 'cyan',
-      'pink', 'brown', 'teal', 'lime', 'indigo', 'maroon', 'navy', 'olive', 'silver', 'aqua', 'fuchsia', 'gray'
-    ];
     this.chartCustom = new Chart("ChartCustom", {
       type: 'pie',
       data: {
@@ -265,7 +265,7 @@ export class AssetManagerHomeComponent implements OnInit, OnDestroy{
           {
             label: this.currentCustom.labelName,
             data: this.currentCustom.data,
-            backgroundColor: labelColors
+            backgroundColor: this.labelColorPie
           }
         ]
       },
